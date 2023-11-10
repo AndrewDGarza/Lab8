@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>Welcome {{content}} - Instructor</h1>
+
+         <br>
+
+         <script src="/static/index.js"></script>
+
+         <!-- <button type="button" onclick="fetchAllClasses_Student()">See All My Classes</button><br> -->
+
+
+
+         <h3>My Classes: </h3><br>
+         <table border = 1>
+
+            <tr>
+                <th>Course</th>
+                <th>Time Information</th>
+                <th>Capacity</th>
+                <th>View Class</th>
+            </tr>
+
+            {% for row in rows %}
+        
+            <tr>
+               <td> {{ row.className }} </td>
+               <td> {{ row.timeInfo }} </td>
+               {%  for class in studentCounts %}
+                    {%  if row.className == class.className %}
+                        <td> {{ class.studentCount }}/{{ row.capacity }} </td>
+                    {% endif %} 
+                {% endfor %}
+               <td><a href="/viewStudents/{{ row.className }}">View Class</a></td>
+
+            </tr>
+        
+            {% endfor %}
+
+            
+         </table> <br>
+
+
+        <a href='/logout'><input type=”button” value=”Logout”></a>
+    </body>
+</html>

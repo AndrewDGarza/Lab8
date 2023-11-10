@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <body>
+		<h1> Change Grade For {{student}} - Course: {{className}} </h1>
+        <h1> Current Grade: {{currentGrade}}</h1>
+
+        <a href = "/viewStudents/{{className}}"><button>Back to Class View</button></a>
+
+		{% if error %}
+			<p><strong>Error:</strong> {{ error }}
+	 	{% endif %}
+
+		<form action = "http://localhost:5000//changeGrade/confirm/{{student}}/{{className}}" method = "POST">
+			<p>Enter New Grade:</p>
+            <input type="text" inputmode="decimal" 
+            id="float-input" name="newGrade" 
+            pattern="[0-9]*[.,]?[0-9]*"> 
+			<p><input type = "submit" value = "Change Grade" /></p>
+		</form>
+
+        <br>
+
+        <a href='/logout'><input type=”button” value=”Logout”></a>
+    </body>
+</html>

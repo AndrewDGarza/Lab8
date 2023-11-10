@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>Welcome {{content}}</h1>
+
+         <br>
+
+         <script src="/static/index.js"></script>
+
+         <!-- <button type="button" onclick="fetchAllClasses_Student()">See All My Classes</button><br> -->
+         <a href = "/addDrop"><button>Add/Drop a Course</button></a>
+
+
+         <h3>My Classes: </h3><br>
+         <table border = 1>
+
+            <tr>
+                <th>Course</th>
+                <th>Current Grade</th>
+            </tr>
+
+            {% for row in rows %}
+        
+            <tr>
+               <th> {{ row.className }} </th>
+               <td> {{ row.Grade }} </td>
+            </tr>
+        
+            {% endfor %}
+         </table> <br>
+
+
+        <a href='/logout'><input type=”button” value=”Logout”></a>
+    </body>
+</html>

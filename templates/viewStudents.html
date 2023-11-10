@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>All Students in {{className}}</h1>
+
+         <br>
+
+         <script src="/static/index.js"></script>
+
+         <!-- <button type="button" onclick="fetchAllClasses_Student()">See All My Classes</button><br> -->
+         <!-- <a href = "/addDrop"><button>Add/Drop a Course</button></a> -->
+         <a href = "/success/{{instructor}}"><button>Back to My Classes</button></a>
+
+
+         <h3>Students: </h3><br>
+         <table border = 1>
+
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Current Grade</th>
+                <th>Edit Student Grade</th>
+            </tr>
+            {% for row in students %}
+        
+            <tr>
+                <td> {{ row.id }} </td>
+                <td> {{ row.studentName }} </td>
+                <td> {{ row.Grade }} </td>
+                <td><a href="/changeGrade/{{ row.studentName }}/{{className}}">Edit Grade</a></td>
+            </tr>
+        
+            {% endfor %}
+         </table> <br>
+
+
+        <a href='/logout'><input type=”button” value=”Logout”></a>
+    </body>
+</html>

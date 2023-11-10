@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>Add/Drop Class - {{studentName}}</h1>
+
+         <br>
+
+         <!-- <script src="/static/index.js"></script> -->
+
+         <!-- <button type="button" onclick="fetchAllClasses_Student()">See All My Classes</button><br> -->
+
+         <a href = "/success/{{studentName}}"><button> Return </button></a>
+
+
+         <h3>Add/Drop a Class: </h3><br>
+
+         
+        {% if error %}
+            <p><strong>Error:</strong> {{ error }}
+        {% endif %}
+         <table border = 1>
+
+            <tr>
+                <th>Course</th>
+                <th>Instructor</th>
+                <th>Time Information</th>
+                <th>Capacity</th>
+                <th>Add/Drop</th>
+            </tr>
+
+            {% for row in classes %}
+        
+            <tr>
+               <td> {{ row.className }} </td>
+               <td> {{ row.prof }} </td>
+               <td> {{ row.timeInfo }} </td>
+               {%  for class in studentCounts %}
+                    {%  if row.className == class.className %}
+                        <td> {{ class.studentCount }}/{{ row.capacity }} </td>
+                    {% endif %} 
+                {% endfor %}
+
+               {% set ns = namespace(found=false) %} 
+                    {%  for class in studentClasses %}
+                        {%  if row.className == class.className %}
+                        {% set ns.found = true %}
+                        {% endif %} 
+                    {% endfor %}
+
+                    {%  if ns.found %}
+                        <td><a href="/drop/{{ row.className }}">Drop</a></td>
+                    {% else %}
+                        <td><a href="/add/{{ row.className }}">Add</a></td>
+                    {% endif %}
+
+
+            </tr>
+            {% endfor %}
+        
+         </table> <br>
+
+
+
+        <a href='/logout'><input type=”button” value=”Logout”></a>
+    </body>
+</html>
